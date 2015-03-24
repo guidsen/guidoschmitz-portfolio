@@ -1,0 +1,31 @@
+.navbar-top {
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  font-size: 12px;
+  padding-top: 15px;
+  .navbar-nav {
+    margin-right: 30px;
+    li {
+      &.active a {
+        color: #FFF;
+        opacity: 1;
+        &:hover {
+          color: #FFF;
+        }
+      }
+      a {
+        opacity: 0.6;
+        color: #E5E5E5;
+        background-color: inherit !important;
+        &:hover {
+          color: #bababa;
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &.navbar-fixed-top {
+    background-color: #0a0711;
+    padding-top: 0px;
+  }
+}

@@ -1,0 +1,102 @@
+@import "bootstrap/bootstrap";
+@import "navbar";
+@import "services";
+@import "projects";
+@import "about";
+@import "contact";
+@import "footer";
+
+@btn-font-weight: 300;
+@font-family-sans-serif: "Lato", Helvetica, Arial, sans-serif;
+@primary: #651D72;
+@black: #434A54;
+@white: #F8F8F8;
+@border-color: #E9F0F3;
+@border-height: 2px;
+@alt-bg: #F6F9FA;
+
+body, label, .checkbox label {
+  font-weight: 300;
+  font-size: 16px;
+  color: @black;
+  background-color: #FBFBFB;
+}
+
+.btn {
+  transition: all 0.2s;
+}
+
+h2.heading {
+  margin: 40px 0;
+  text-align: center;
+}
+
+hr {
+  margin: 0;
+  clear: both;
+  border-top: @border-height solid @border-color;
+}
+
+#projects, #about-me, #contact {
+  padding-bottom: 40px;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background-color: #9141A0;
+  border-radius: 3px;
+  border: none;
+  font-size: 14px;
+  padding: 8px 25px 11px;
+  box-shadow: inset 0 -4px 0 @primary;
+  &:hover {
+    background-color: #793086;
+  }
+  &.btn-lg {
+    font-size: 16px;
+    padding: 12px 32px 15px;
+  }
+}
+
+.landing-header {
+  background: url('/images/landing_bg.png') no-repeat center center;
+  background-size: cover;
+  background-color: #000;
+  height: 100%;
+  .content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 500px;
+    height: 125px;
+    margin: auto;
+    color: #FFF;
+    .slogan {
+      font-weight: 300;
+      opacity: 0.8;
+      font-size: 36px;
+    }
+    .action {
+      width: 280px;
+      margin: 15px auto 0px;
+      .btn {
+        font-weight: 400;
+        text-transform: uppercase;
+        background: none;
+        border-radius: 5px;
+        border: 2px solid #FFF;
+        padding: 8px 40px;
+        color: #FFF;
+        &:hover {
+          margin-top: -2px;
+          padding: 10px 42px;
+          background-color: rgba(101, 29, 114, 0.52);
+          color: @white;
+          border-color: @primary;
+        }
+      }
+    }
+  }
+}
