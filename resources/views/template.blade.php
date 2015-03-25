@@ -4,30 +4,23 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/template.css" rel="stylesheet" type="text/css">
-    <script>
-        //        $(document).ready(function () {
-        ////            setTimeout(function () {
-        ////                $('.action > .btn').effect('shake', {times: 3}, 5000);
-        ////            }, 1500);
-        //        })
-    </script>
 </head>
 <body>
 <header class="landing-header">
     <nav class="navbar navbar-top">
         <div class="container-fluid">
             <ul class="nav navbar-nav navbar-right">
-                <li data-target="#services" class="active"><a href="#services">Diensten</a></li>
-                <li data-target="#about-me"><a href="#about-me">Over mij</a></li>
-                <li data-target="#projects"><a href="#projects">Projecten</a></li>
-                <li data-target="#contact"><a href="#contact">Contact</a></li>
+                <li><a href="#services">Diensten</a></li>
+                <li><a href="#projects">Projecten</a></li>
+                <li><a href="#about-me">Over mij</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
     <section class="content text-center">
         <div class="slogan">Ik bouw web applicaties.</div>
         <div class="action">
-            <button class="btn">Hoe ik u kan helpen</button>
+            <a class="btn" href="#services">Hoe ik u kan helpen</a>
         </div>
     </section>
 </header>
@@ -130,8 +123,8 @@
     &copy; 2015 Guido Schmitz
     <ul class="pages">
         <li><a href="#">Diensten</a></li>
-        <li><a href="#">Over mij</a></li>
         <li><a href="#">Projecten</a></li>
+        <li><a href="#">Over mij</a></li>
         <li><a href="#">Contact</a></li>
     </ul>
     <section class="social">
@@ -145,26 +138,45 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
 <script>
     $(document).ready(function () {
-        $('.navbar a[href^="#"]').on('click', function (event) {
-            var target = $($(this).parent().data('target'));
-            if (target.length) {
-                event.preventDefault();
-                $('html, body').animate({
-                    scrollTop: target.offset().top - 50
-                }, 1000);
-            }
+        $(document).on('scroll', onScroll);
+
+        $('.navbar a[href^="#"], .action a[href^="#"]').on('click', function (e) {
+            e.preventDefault();
+            $(document).off("scroll");
+
+            $('a').each(function () {
+                $(this).parent().removeClass('active');
+            })
+            $(this).parent().addClass('active');
+
+            var target = this.hash;
+            var $target = $(target);
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top - 50
+            }, 500, 'swing', function () {
+                window.location.hash = target;
+                $(document).on("scroll", onScroll);
+            });
         });
 
-        var navHeight = $('.landing-header').position().top + $('.landing-header').outerHeight(true);
-        $(window).bind('scroll', function () {
-            if ($(window).scrollTop() > navHeight - 50) {
-                $('nav').addClass('navbar-fixed-top');
-            }
-            else {
-                $('nav').removeClass('navbar-fixed-top');
-            }
-        });
-    })
+        function onScroll(event) {
+            var scrollPos = $(document).scrollTop();
+            var navHeight = $('.landing-header').position().top + $('.landing-header').outerHeight(true);
+            (scrollPos > navHeight - 50) ? $('nav').addClass('navbar-fixed-top') : $('nav').removeClass('navbar-fixed-top');
+
+            $('.navbar a').each(function () {
+                var currLink = $(this);
+                var refElement = $(currLink.attr("href"));
+                if (refElement.position().top <= scrollPos + 50 && refElement.position().top + refElement.height() > scrollPos + 50) {
+                    $('.navbar ul li').removeClass("active");
+                    currLink.parent().addClass("active");
+                }
+                else {
+                    currLink.parent().removeClass("active");
+                }
+            });
+        }
+    });
 </script>
 </body>
 </html>

@@ -6259,7 +6259,7 @@ button.close {
   padding-bottom: 90px;
 }
 #services .service:last-of-type {
-  padding-bottom: 60px;
+  padding-bottom: 0px;
 }
 #services .service .pull-right > img {
   float: right !important;
@@ -6382,7 +6382,8 @@ hr {
 }
 #projects,
 #about-me,
-#contact {
+#contact,
+#services {
   padding-bottom: 40px;
   overflow: hidden;
 }
